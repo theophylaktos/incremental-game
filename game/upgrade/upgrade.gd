@@ -21,6 +21,13 @@ func _on_purchase_button_pressed() -> void:
 	PlayerStats.money -= cost
 	cost *= cost_increment
 	%Cost.text = "$" + str(cost)
+	print(name)
+	match name:
+		"Eyes":
+			PlayerStats.eyes = true
+		"Sunglasses":
+			PlayerStats.sunglasses = true
+			
 	
 	purchases += 1
 	if (purchases >= max_purchases):
