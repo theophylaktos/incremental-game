@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://d1mff478o3ug3"]
+
+[ext_resource type="Script" uid="uid://fmnyqc2cx2fw" path="res://game/sfx/sfx_player.gd" id="1_xnm38"]
+[ext_resource type="Script" uid="uid://c3d63fvkogmx2" path="res://game/sfx/id_settings.gd" id="2_ex4pl"]
+[ext_resource type="AudioStream" uid="uid://hg3smcb4n5lr" path="res://assets/sfx/button_click.mp3" id="3_7rnuh"]
+[ext_resource type="AudioStream" uid="uid://ctytudvo7qbko" path="res://assets/sfx/button_hover.wav" id="4_h1kfk"]
+
+[sub_resource type="Resource" id="Resource_kfo55"]
+script = ExtResource("2_ex4pl")
+stream = ExtResource("3_7rnuh")
+metadata/_custom_type_script = "uid://c3d63fvkogmx2"
+
+[sub_resource type="Resource" id="Resource_8pj4k"]
+script = ExtResource("2_ex4pl")
+stream = ExtResource("4_h1kfk")
+metadata/_custom_type_script = "uid://c3d63fvkogmx2"
+
+[node name="SfxPlayer" type="Node" unique_id=1790965844]
+process_mode = 3
+script = ExtResource("1_xnm38")
+id_to_setting = Dictionary[int, ExtResource("2_ex4pl")]({
+0: SubResource("Resource_kfo55"),
+1: SubResource("Resource_8pj4k")
+})
