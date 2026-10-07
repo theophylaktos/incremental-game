@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c5u3bemykkv0l"]
 
-[ext_resource type="Script" uid="uid://dj5rio6yc6yju" path="res://game/components/animated_button.gd" id="1_oa506"]
 [ext_resource type="Script" uid="uid://hwnbriu8hcyv" path="res://game/main.gd" id="1_xtpaf"]
+[ext_resource type="Shader" uid="uid://bxurh7bq0hhuh" path="res://game/background.gdshader" id="2_dp3pf"]
 [ext_resource type="Script" uid="uid://dm25er7vi86yh" path="res://game/control.gd" id="2_lx3aj"]
 [ext_resource type="Texture2D" uid="uid://lfd84ycmvilt" path="res://assets/art/rock.png" id="2_xkbyp"]
 [ext_resource type="PackedScene" uid="uid://dyqrhsag13rg6" path="res://game/upgrade/upgrade.tscn" id="3_emt18"]
@@ -9,6 +9,31 @@
 [ext_resource type="Texture2D" uid="uid://j7bt0qymchdo" path="res://assets/art/sunglasses.png" id="4_itumj"]
 [ext_resource type="Texture2D" uid="uid://ja02bhcpvltp" path="res://assets/art/tophat.png" id="5_dp3pf"]
 [ext_resource type="Texture2D" uid="uid://cl1gy2rv1l5q3" path="res://assets/art/bowtie.png" id="6_ioaqv"]
+[ext_resource type="Texture2D" uid="uid://cjqteqrgilfdy" path="res://assets/art/coin.png" id="8_itumj"]
+[ext_resource type="Script" uid="uid://bm31uhl12hfhf" path="res://game/coinbutton.gd" id="9_itumj"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8e1wj"]
+noise_type = 2
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dl6xb"]
+width = 960
+height = 540
+noise = SubResource("FastNoiseLite_8e1wj")
+seamless = true
+seamless_blend_skirt = 0.213
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fngjv"]
+shader = ExtResource("2_dp3pf")
+shader_parameter/noise = SubResource("NoiseTexture2D_dl6xb")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lx3aj"]
+atlas = ExtResource("8_itumj")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_itumj"]
+atlas = ExtResource("8_itumj")
+region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7bva4"]
 
@@ -20,6 +45,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xtpaf")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=306996237]
+material = SubResource("ShaderMaterial_fngjv")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1824707589]
 layout_mode = 0
@@ -132,17 +166,20 @@ texture = ExtResource("6_ioaqv")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Button" type="Button" parent="HBoxContainer/Center/MarginContainer/VBoxContainer" unique_id=625774804]
+[node name="CoinButton" type="TextureButton" parent="HBoxContainer/Center/MarginContainer/VBoxContainer" unique_id=1129759289]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 offset_transform_enabled = true
-text = "Pick up money
-off the street"
-script = ExtResource("1_oa506")
+texture_normal = SubResource("AtlasTexture_lx3aj")
+texture_hover = SubResource("AtlasTexture_itumj")
+stretch_mode = 5
+script = ExtResource("9_itumj")
 
 [node name="Panel" type="Panel" parent="HBoxContainer/Center/MarginContainer/VBoxContainer" unique_id=491343006]
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 0.25
 theme_override_styles/panel = SubResource("StyleBoxEmpty_7bva4")
 
 [node name="Upgrades" type="MarginContainer" parent="HBoxContainer" unique_id=91594008]
@@ -156,18 +193,51 @@ theme_override_constants/margin_bottom = 10
 [node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/Upgrades" unique_id=592478981]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Upgrades/PanelContainer" unique_id=1042733598]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Upgrades/PanelContainer" unique_id=41537409]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Upgrades/PanelContainer/MarginContainer" unique_id=1042733598]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Upgrades" type="Label" parent="HBoxContainer/Upgrades/PanelContainer/VBoxContainer" unique_id=1276149519]
+[node name="Upgrades" type="Label" parent="HBoxContainer/Upgrades/PanelContainer/MarginContainer/VBoxContainer" unique_id=1276149519]
 layout_mode = 2
 text = "Upgrades
 ---------------------------------------"
 horizontal_alignment = 1
 
-[node name="Eyes" parent="HBoxContainer/Upgrades/PanelContainer/VBoxContainer" unique_id=121411007 instance=ExtResource("3_emt18")]
+[node name="Eyes" parent="HBoxContainer/Upgrades/PanelContainer/MarginContainer/VBoxContainer" unique_id=121411007 instance=ExtResource("3_emt18")]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
+size_flags_vertical = 0
 upgrade_name = "Eyes"
 initial_cost = 5.0
+cost_increment = 1.0
+money_multiplier = 5
+
+[node name="Sunglasses" parent="HBoxContainer/Upgrades/PanelContainer/MarginContainer/VBoxContainer" unique_id=744312586 instance=ExtResource("3_emt18")]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+upgrade_name = "Sunglasses"
+initial_cost = 25.0
+cost_increment = 1.0
+money_multiplier = 4
+
+[node name="Tophat" parent="HBoxContainer/Upgrades/PanelContainer/MarginContainer/VBoxContainer" unique_id=842550833 instance=ExtResource("3_emt18")]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+upgrade_name = "Tophat"
+initial_cost = 100.0
+cost_increment = 1.0
+money_multiplier = 3
+
+[node name="Bowtie" parent="HBoxContainer/Upgrades/PanelContainer/MarginContainer/VBoxContainer" unique_id=336638790 instance=ExtResource("3_emt18")]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+upgrade_name = "Bowtie"
+initial_cost = 300.0
 cost_increment = 1.0

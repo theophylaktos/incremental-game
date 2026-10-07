@@ -3,6 +3,10 @@ extends Node
 signal money_changed
 signal eyes_changed
 signal sunglasses_changed
+signal bowtie_changed
+signal tophat_changed
+
+var money_multiplier = 1
 
 @export var money: float = 0:
 	set(new_value):
@@ -18,3 +22,13 @@ signal sunglasses_changed
 		set(new_value):
 			sunglasses = new_value
 			sunglasses_changed.emit()
+			
+@export var bowtie: bool = false:
+		set(new_value):
+			bowtie = new_value
+			bowtie_changed.emit()
+
+@export var tophat: bool = false:
+		set(new_value):
+			tophat = new_value
+			tophat_changed.emit()
