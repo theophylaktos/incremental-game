@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lfd84ycmvilt"
-path="res://.godot/imported/rock.png-9c485fb10899ee392b9df5422e69cf14.ctex"
+uid="uid://dipr4taff67vj"
+path="res://.godot/imported/mouth.png-0f4d0717f7daba9c53f8daa82fcc4def.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/rock.png"
-dest_files=["res://.godot/imported/rock.png-9c485fb10899ee392b9df5422e69cf14.ctex"]
+source_file="res://assets/art/rock/mouth.png"
+dest_files=["res://.godot/imported/mouth.png-0f4d0717f7daba9c53f8daa82fcc4def.ctex"]
 
 [params]
 

@@ -3,14 +3,19 @@
 [ext_resource type="Script" uid="uid://hwnbriu8hcyv" path="res://game/main.gd" id="1_xtpaf"]
 [ext_resource type="Shader" uid="uid://bxurh7bq0hhuh" path="res://game/background.gdshader" id="2_dp3pf"]
 [ext_resource type="Script" uid="uid://dm25er7vi86yh" path="res://game/control.gd" id="2_lx3aj"]
-[ext_resource type="Texture2D" uid="uid://lfd84ycmvilt" path="res://assets/art/rock.png" id="2_xkbyp"]
 [ext_resource type="PackedScene" uid="uid://dyqrhsag13rg6" path="res://game/upgrade/upgrade.tscn" id="3_emt18"]
-[ext_resource type="Texture2D" uid="uid://dlhyvbcdvakl3" path="res://assets/art/eyes.png" id="3_lx3aj"]
-[ext_resource type="Texture2D" uid="uid://j7bt0qymchdo" path="res://assets/art/sunglasses.png" id="4_itumj"]
-[ext_resource type="Texture2D" uid="uid://ja02bhcpvltp" path="res://assets/art/tophat.png" id="5_dp3pf"]
-[ext_resource type="Texture2D" uid="uid://cl1gy2rv1l5q3" path="res://assets/art/bowtie.png" id="6_ioaqv"]
+[ext_resource type="Texture2D" uid="uid://lfd84ycmvilt" path="res://assets/art/rock/rock.png" id="4_yyxey"]
+[ext_resource type="Texture2D" uid="uid://dlhyvbcdvakl3" path="res://assets/art/rock/eyes.png" id="5_tv0fx"]
+[ext_resource type="Texture2D" uid="uid://j7bt0qymchdo" path="res://assets/art/rock/sunglasses.png" id="6_017dk"]
+[ext_resource type="Texture2D" uid="uid://ja02bhcpvltp" path="res://assets/art/rock/tophat.png" id="7_8ymx4"]
 [ext_resource type="Texture2D" uid="uid://cjqteqrgilfdy" path="res://assets/art/coin.png" id="8_itumj"]
+[ext_resource type="Texture2D" uid="uid://cl1gy2rv1l5q3" path="res://assets/art/rock/bowtie.png" id="8_m8y2r"]
 [ext_resource type="Script" uid="uid://bm31uhl12hfhf" path="res://game/coinbutton.gd" id="9_itumj"]
+[ext_resource type="Texture2D" uid="uid://dipr4taff67vj" path="res://assets/art/rock/mouth.png" id="9_yyxey"]
+[ext_resource type="Texture2D" uid="uid://dnpp37mhtqfe4" path="res://assets/art/rock/gold_tooth.png" id="10_tv0fx"]
+[ext_resource type="Texture2D" uid="uid://d732kvtu5e0q" path="res://assets/art/rock/hands.png" id="11_017dk"]
+[ext_resource type="Texture2D" uid="uid://274joylnamjy" path="res://assets/art/rock/feet.png" id="12_8ymx4"]
+[ext_resource type="Script" uid="uid://cekllt5j1oohi" path="res://game/automatic_money.gd" id="12_ioaqv"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_8e1wj"]
 noise_type = 2
@@ -23,9 +28,18 @@ noise = SubResource("FastNoiseLite_8e1wj")
 seamless = true
 seamless_blend_skirt = 0.213
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fngjv"]
+noise_type = 2
+offset = Vector3(413.11, 0, 0)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7bva4"]
+noise = SubResource("FastNoiseLite_fngjv")
+seamless = true
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fngjv"]
 shader = ExtResource("2_dp3pf")
 shader_parameter/noise = SubResource("NoiseTexture2D_dl6xb")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_7bva4")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lx3aj"]
 atlas = ExtResource("8_itumj")
@@ -56,9 +70,12 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1824707589]
-layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Statistics" type="MarginContainer" parent="HBoxContainer" unique_id=2030951628]
 layout_mode = 2
@@ -118,7 +135,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_xkbyp")
+texture = ExtResource("4_yyxey")
 expand_mode = 3
 stretch_mode = 5
 
@@ -129,7 +146,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_lx3aj")
+texture = ExtResource("5_tv0fx")
 expand_mode = 3
 stretch_mode = 5
 
@@ -140,7 +157,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_itumj")
+texture = ExtResource("6_017dk")
 expand_mode = 3
 stretch_mode = 5
 
@@ -151,7 +168,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("5_dp3pf")
+texture = ExtResource("7_8ymx4")
 expand_mode = 3
 stretch_mode = 5
 
@@ -162,7 +179,51 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("6_ioaqv")
+texture = ExtResource("8_m8y2r")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Mouth" type="TextureRect" parent="HBoxContainer/Center/MarginContainer/VBoxContainer/Textures" unique_id=878255703]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_yyxey")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="GoldTooth" type="TextureRect" parent="HBoxContainer/Center/MarginContainer/VBoxContainer/Textures" unique_id=1852825142]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_tv0fx")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Hands" type="TextureRect" parent="HBoxContainer/Center/MarginContainer/VBoxContainer/Textures" unique_id=344619823]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_017dk")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Feet" type="TextureRect" parent="HBoxContainer/Center/MarginContainer/VBoxContainer/Textures" unique_id=1887673293]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_8ymx4")
 expand_mode = 3
 stretch_mode = 5
 
@@ -185,6 +246,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_7bva4")
 [node name="Upgrades" type="MarginContainer" parent="HBoxContainer" unique_id=91594008]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.05
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -200,17 +262,20 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Upgrades/PanelContainer/MarginContainer" unique_id=1042733598]
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/Upgrades/PanelContainer/MarginContainer" unique_id=640168813]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Upgrades/PanelContainer/MarginContainer/ScrollContainer" unique_id=1042733598]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Upgrades" type="Label" parent="HBoxContainer/Upgrades/PanelContainer/MarginContainer/VBoxContainer" unique_id=1276149519]
+[node name="Upgrades" type="Label" parent="HBoxContainer/Upgrades/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1276149519]
 layout_mode = 2
 text = "Upgrades
 ---------------------------------------"
 horizontal_alignment = 1
 
-[node name="Eyes" parent="HBoxContainer/Upgrades/PanelContainer/MarginContainer/VBoxContainer" unique_id=121411007 instance=ExtResource("3_emt18")]
+[node name="Eyes" parent="HBoxContainer/Upgrades/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=121411007 instance=ExtResource("3_emt18")]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 size_flags_vertical = 0
@@ -219,7 +284,7 @@ initial_cost = 5.0
 cost_increment = 1.0
 money_multiplier = 5
 
-[node name="Sunglasses" parent="HBoxContainer/Upgrades/PanelContainer/MarginContainer/VBoxContainer" unique_id=744312586 instance=ExtResource("3_emt18")]
+[node name="Sunglasses" parent="HBoxContainer/Upgrades/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=744312586 instance=ExtResource("3_emt18")]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 upgrade_name = "Sunglasses"
@@ -227,7 +292,7 @@ initial_cost = 25.0
 cost_increment = 1.0
 money_multiplier = 4
 
-[node name="Tophat" parent="HBoxContainer/Upgrades/PanelContainer/MarginContainer/VBoxContainer" unique_id=842550833 instance=ExtResource("3_emt18")]
+[node name="Tophat" parent="HBoxContainer/Upgrades/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=842550833 instance=ExtResource("3_emt18")]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 upgrade_name = "Tophat"
@@ -235,9 +300,53 @@ initial_cost = 100.0
 cost_increment = 1.0
 money_multiplier = 3
 
-[node name="Bowtie" parent="HBoxContainer/Upgrades/PanelContainer/MarginContainer/VBoxContainer" unique_id=336638790 instance=ExtResource("3_emt18")]
+[node name="Bowtie" parent="HBoxContainer/Upgrades/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=336638790 instance=ExtResource("3_emt18")]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 upgrade_name = "Bowtie"
 initial_cost = 300.0
 cost_increment = 1.0
+money_multiplier = 4
+
+[node name="Mouth" parent="HBoxContainer/Upgrades/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1358352777 instance=ExtResource("3_emt18")]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+upgrade_name = "Mouth"
+initial_cost = 600.0
+cost_increment = 1.0
+money_multiplier = 5
+
+[node name="GoldTooth" parent="HBoxContainer/Upgrades/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=406925483 instance=ExtResource("3_emt18")]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+upgrade_name = "GoldTooth"
+initial_cost = 3000.0
+cost_increment = 1.0
+money_multiplier = 10
+
+[node name="Hands" parent="HBoxContainer/Upgrades/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=813367432 instance=ExtResource("3_emt18")]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+upgrade_name = "Hands"
+initial_cost = 20000.0
+cost_increment = 1.0
+money_multiplier = 3
+
+[node name="Feet" parent="HBoxContainer/Upgrades/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=982170974 instance=ExtResource("3_emt18")]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+upgrade_name = "Feet"
+initial_cost = 60000.0
+cost_increment = 1.0
+money_multiplier = 2
+
+[node name="AutomaticMoney" type="Control" parent="." unique_id=1456864273]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("12_ioaqv")
+
+[node name="Timer" type="Timer" parent="AutomaticMoney" unique_id=830613400]
+autostart = true
+
+[connection signal="timeout" from="AutomaticMoney/Timer" to="AutomaticMoney" method="_on_timer_timeout"]

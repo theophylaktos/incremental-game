@@ -33,7 +33,15 @@ func _on_purchase_button_pressed() -> void:
 			PlayerStats.tophat = true
 		"Bowtie":
 			PlayerStats.bowtie = true
-
+		"Mouth":
+			PlayerStats.mouth = true
+		"GoldTooth":
+			PlayerStats.gold_tooth = true
+		"Hands":
+			PlayerStats.hands = true
+		"Feet":
+			PlayerStats.feet = true
+			
 	purchases += 1
 	if (purchases >= max_purchases):
 		queue_free()

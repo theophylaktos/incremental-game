@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cl1gy2rv1l5q3"
-path="res://.godot/imported/bowtie.png-d4753986e757c8b283046e22804b84f3.ctex"
+uid="uid://dnpp37mhtqfe4"
+path="res://.godot/imported/gold_tooth.png-591cfe2133028e30f2709ff15ca5135f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/bowtie.png"
-dest_files=["res://.godot/imported/bowtie.png-d4753986e757c8b283046e22804b84f3.ctex"]
+source_file="res://assets/art/rock/gold_tooth.png"
+dest_files=["res://.godot/imported/gold_tooth.png-591cfe2133028e30f2709ff15ca5135f.ctex"]
 
 [params]
 
