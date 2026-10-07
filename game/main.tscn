@@ -340,6 +340,14 @@ initial_cost = 60000.0
 cost_increment = 1.0
 money_multiplier = 2
 
+[node name="Pickaxe" parent="HBoxContainer/Upgrades/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1528788932 instance=ExtResource("3_emt18")]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+upgrade_name = "Pickaxe"
+initial_cost = 100000.0
+cost_increment = 1.0
+money_multiplier = 2
+
 [node name="AutomaticMoney" type="Control" parent="." unique_id=1456864273]
 anchors_preset = 0
 offset_right = 40.0
